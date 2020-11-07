@@ -1,14 +1,15 @@
-import React from 'react';
+import React, {useEffect, useReducer} from 'react';
 import './App.css';
-import Button from "./components/Button"
+import Practice from "./components/Practice"
+import Counter from "./components/Counter"
 
 function App() {
-  function name(){
-    console.log("test");
-  }
   return (
-    <Button name={name} id={0}></Button>
-  );
+    <>
+      <Practice id="test" name={()=>{console.log("test")}}></Practice>
+      <Counter></Counter>  
+    </>
+  )
 }
 
 export default App;
