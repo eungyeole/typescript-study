@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 interface ButtonType{
     name():void;
-    id: String;
+    id: number;
 }
 function merge<A, B>(a: A, b: B): A | B {
     return {
@@ -17,7 +17,7 @@ const Button: React.FC<ButtonType> = ({name,id})=>{
     },[])
     return(
         <>
-            <p>부모로부터 받은 아이디 값 : {id}</p>
+            <p>현재 유저 아이디 : {id}</p>
         </>
     )
 }
