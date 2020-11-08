@@ -1,5 +1,7 @@
 import React, { useState } from "react"
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
 import * as S from "./styles"
+import { config } from "process";
 interface inputNum{
     first: number,
     second: number,
@@ -7,8 +9,13 @@ interface inputNum{
     fourth: number,
     fifth: number,
 }
+interface response{
+    message: string,
+    prizeLottoNumbers : number[]
+}
 function Lotto(){
     const [Input, setInput] = useState<inputNum>({first: 0, second: 0, third: 0, fourth: 0, fifth: 0});
+    const [Lotto, setLotto] = useState<number[] | null>(null);
     function inputhandler(e : React.ChangeEvent<HTMLInputElement>){
         const { value, name } = e.target;
         if(parseInt(value)>9){
@@ -18,8 +25,16 @@ function Lotto(){
         }
         console.log(e.target.value);
     }
-    function onSubmit(){
-        
+    function onSubmit(){  
+          axios.post("http://10.156.147.146:3000/lotto",Input)
+          .then((response : AxiosResponse<response>)=> {
+            alert(response.data.message);
+            setLotto(response.data.prizeLottoNumbers)
+          })
+          .catch((error : AxiosError)=> {
+            alert(error);
+          });
+          
     }
     return(
         <>
@@ -28,7 +43,8 @@ function Lotto(){
             <S.LottoInput max="9" name="third" type="number" onChange={inputhandler} value={Input.third} ></S.LottoInput>
             <S.LottoInput max="9" name="fourth" type="number" onChange={inputhandler} value={Input.fourth} ></S.LottoInput>
             <S.LottoInput max="9" name="fifth" type="number" onChange={inputhandler} value={Input.fifth} ></S.LottoInput>
-            <S.LottoButton>제출</S.LottoButton>
+            <S.LottoButton onClick={onSubmit}>제출</S.LottoButton>
+            <p>이번 당첨 코드 : {Lotto}</p>
         </>
     )
 }
