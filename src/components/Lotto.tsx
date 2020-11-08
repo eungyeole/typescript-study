@@ -2,13 +2,14 @@ import React, { useState } from "react"
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
 import * as S from "./styles"
 import { config } from "process";
+import { TIMEOUT } from "dns";
 interface inputNum{
     first: number,
     second: number,
     third: number,
     fourth: number,
     fifth: number,
-}
+}   
 interface response{
     message: string,
     prizeLottoNumbers : number[]
@@ -19,14 +20,17 @@ function Lotto(){
     function inputhandler(e : React.ChangeEvent<HTMLInputElement>){
         const { value, name } = e.target;
         if(parseInt(value)>9){
-            setInput({...Input, [name]:9})
-        }else{
+            setInput({...Input, [name]:9});
+        }else if(parseInt(value) < 0){
+            setInput({...Input, [name]:0});
+        }
+        else{
             setInput({...Input, [name]:value})
         }
         console.log(e.target.value);
     }
     function onSubmit(){  
-          axios.post("http://10.156.147.146:3000/lotto",Input)
+          axios.post("http://10.156.147.146:3000/lotto",Input,{timeout:1000})
           .then((response : AxiosResponse<response>)=> {
             alert(response.data.message);
             setLotto(response.data.prizeLottoNumbers)
