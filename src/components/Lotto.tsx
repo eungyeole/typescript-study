@@ -1,8 +1,6 @@
 import React, { useState } from "react"
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
-import * as S from "./styles"
-import { config } from "process";
-import { TIMEOUT } from "dns";
+import * as S from "./styles" 
 interface inputNum{
     first: number,
     second: number,
@@ -25,19 +23,21 @@ function Lotto(){
             setInput({...Input, [name]:0});
         }
         else{
-            setInput({...Input, [name]:value})
+            setInput({...Input, [name]:parseInt(value)})
         }
         console.log(e.target.value);
     }
     function onSubmit(){  
-          axios.post("http://10.156.147.146:3000/lotto",Input,{timeout:1000})
-          .then((response : AxiosResponse<response>)=> {
-            alert(response.data.message);
-            setLotto(response.data.prizeLottoNumbers)
-          })
-          .catch((error : AxiosError)=> {
-            alert(error);
-          });
+        console.log(Input);
+            axios.post("http://10.156.147.146:3000/lotto",Input,{timeout: 1000})
+            .then((response : AxiosResponse<response>)=> {
+                console.log(response);
+                alert(response.data.message);
+                setLotto(response.data.prizeLottoNumbers);
+            })
+            .catch((error : AxiosError)=> {
+                alert(error);
+            });
           
     }
     return(
