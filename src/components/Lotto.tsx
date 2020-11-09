@@ -41,7 +41,7 @@ function Lotto(){
           
     }
     return(
-        <>
+        <div>
             <S.LottoInput max="9" name="first" type="number" onChange={inputhandler} value={Input.first} ></S.LottoInput>
             <S.LottoInput max="9" name="second" type="number" onChange={inputhandler} value={Input.second} ></S.LottoInput>
             <S.LottoInput max="9" name="third" type="number" onChange={inputhandler} value={Input.third} ></S.LottoInput>
@@ -49,7 +49,7 @@ function Lotto(){
             <S.LottoInput max="9" name="fifth" type="number" onChange={inputhandler} value={Input.fifth} ></S.LottoInput>
             <S.LottoButton onClick={onSubmit}>제출</S.LottoButton>
             <p>이번 당첨 코드 : {Lotto}</p>
-        </>
+        </div>
     )
 }
 export default Lotto;

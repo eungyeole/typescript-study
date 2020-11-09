@@ -2,3 +2,7 @@
   margin: 0;
   padding: 0;
 }
+.active{
+  background: #7bceb2;
+  border-radius: 10px;
+}
