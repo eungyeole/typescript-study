@@ -18,7 +18,7 @@ function Rsp(){
             if(Progress>0){
                 setProgress(Progress-1);
             }else{
-                axios.post("http://10.156.147.146:8000/whoIsWinner",{value: state},{timeout: 1000})
+                axios.post("http://10.156.147.146:8000/whoIsWinner",{value: state},{timeout: 2000})
                 .then((response : AxiosResponse<response>)=> {
                     setAIstate(response.data);
                     setProgress(200);

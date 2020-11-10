@@ -4,6 +4,7 @@ import Practice from "./components/Practice"
 import Counter from "./components/Counter"
 import Lotto from "./components/Lotto"
 import Rsp from "./components/Rsp"
+import Inputtest from "./components/Inputs"
 import Home from "./components/Home"
 import * as S from "./components/styles"
 import { BrowserRouter as Router, Switch, Route, Link,NavLink } from 'react-router-dom';
@@ -25,6 +26,7 @@ function App() {
             <Route exact path="/counter" component={Counter}></Route>
             <Route exact path="/lotto" component={Lotto}></Route>
             <Route exact path="/rsp" component={Rsp}></Route>
+            <Route exact path="/inputtest" component={Inputtest}></Route>
           </Switch>
         </S.NavWrapper>
       </Router>
